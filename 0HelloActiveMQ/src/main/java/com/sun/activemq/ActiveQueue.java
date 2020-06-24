@@ -7,8 +7,6 @@ import javax.jms.*;
 public class ActiveQueue {
 
     //  linux 上部署的activemq 的 IP 地址 + activemq 的端口号
-
-    // 1. 创建连接工厂,按照给定的url地址，采用默认用户名和密码
     public static final String ACTIVEMQ_URL = "tcp://localhost:61617";
     // 目的地的名称
     public static final String QUEUE_NAME = "jdbc01";
