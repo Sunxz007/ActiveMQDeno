@@ -23,19 +23,20 @@ public class JmsConsumer {
             Queue queue = session.createQueue(QUEUE_NAME);
             // 5. 创建消费者
             MessageConsumer messageConsumer = session.createConsumer(queue);
-         // 6. 消费者接受消息 同步阻塞的方式
-            while (true) {
-                // 始终接受消息
-                //TextMessage textMessage=(TextMessage) messageConsumer.receive();
-                // 在规定时间内接受消息
-                TextMessage textMessage = (TextMessage) messageConsumer.receive(4000L);
-                if (null != textMessage) {
-                    System.out.println("***消费者接受消息****"+ textMessage.getText());
-                }else {
-                    break;
-                }
-            }
+           // 6. 消费者接受消息 异步监听
+            messageConsumer.setMessageListener((Message message) -> {
+                if(null != message && message instanceof  TextMessage){
+                       TextMessage textMessage = (TextMessage) message;
+                       try {
+                           System.out.println("****消费者接受的消息是："+textMessage.getText());
+                       } catch (JMSException e) {
+                           e.printStackTrace();
+                       }
+                   }
+            });
 
+            // 保证控制台不停止运行，留时间给程序监听
+            System.in.read();
             // 关闭资源
             messageConsumer.close();
             session.close();
