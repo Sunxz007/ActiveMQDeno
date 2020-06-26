@@ -23,10 +23,14 @@
     <bean class="org.apache.activemq.command.ActiveMQQueue" id="destinationQueue">
         <constructor-arg index="0" value="spring-active-queue"/>
     </bean>
+    <!--主题-->
+    <bean class="org.apache.activemq.command.ActiveMQTopic" id="destinationTopic">
+        <constructor-arg index="0" value="spring-active-toptic"/>
+    </bean>
     <!--spring 提供的JMS工具类，可以进行消息发送，接受等-->
     <bean class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="jmsFactory"/>
-        <property name="defaultDestination" ref="destinationQueue"/>
+        <property name="defaultDestination" ref="destinationTopic"/>
         <property name="messageConverter">
             <bean class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
         </property>
