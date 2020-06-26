@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+    <!--开启自动扫包-->
+    <context:component-scan base-package="com.sun.activemq"/>
+    <!--配置生产者-->
+    <bean class="org.apache.activemq.pool.PooledConnectionFactory" id="jmsFactory">
+        <property name="connectionFactory">
+            <!--真正可产生connection的ConnectionFactory-->
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="tcp://localhost:61617"/>
+            </bean>
+        </property>
+        <property name="maxConnections" value="100"/>
+    </bean>
+    <!--队列目的地，点对点-->
+    <bean class="org.apache.activemq.command.ActiveMQQueue" id="destinationQueue">
+        <constructor-arg index="0" value="spring-active-queue"/>
+    </bean>
+    <!--spring 提供的JMS工具类，可以进行消息发送，接受等-->
+    <bean class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jmsFactory"/>
+        <property name="defaultDestination" ref="destinationQueue"/>
+        <property name="messageConverter">
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
+        </property>
+    </bean>
+</beans>
