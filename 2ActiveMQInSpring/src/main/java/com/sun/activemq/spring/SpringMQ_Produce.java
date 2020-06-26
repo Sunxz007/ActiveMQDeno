@@ -31,7 +31,7 @@ public class SpringMQ_Produce{
 //            }
 //        });
 
-        produce.jmsTemplate.send((session)-> session.createTextMessage("*****spring与activemq的整合case"));
+        produce.jmsTemplate.send((session)-> session.createTextMessage("*****spring与activemq的整合,给主题订阅者发送消息"));
         System.out.println("*****send task over");
     }
 }

@@ -35,4 +35,10 @@
             <bean class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
         </property>
     </bean>
+    <!--配置监听程序-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer" id="jmsContainer">
+        <property name="connectionFactory" ref="jmsFactory"/>
+        <property name="destination" ref="destinationTopic"/>
+        <property name="messageListener" ref="myMessageListener"/>
+    </bean>
 </beans>
