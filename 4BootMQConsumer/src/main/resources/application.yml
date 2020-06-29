@@ -5,7 +5,7 @@ server:
 # active 基本配置
 spring:
   activemq:
-    broker-url: tcp://localhost:61617
+    broker-url: tcp://localhost:61616
     user: admin
     password: admin
   jms:

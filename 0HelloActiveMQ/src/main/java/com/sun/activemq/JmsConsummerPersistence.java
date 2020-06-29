@@ -5,7 +5,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.*;
 
 public class JmsConsummerPersistence {
-    public static final String ACTIVEMQ_URL = "tcp://192.168.17.3:61616";
+    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
     public static final String TOPIC_NAME = "topic01";
 
     public static void main(String[] args) throws Exception{

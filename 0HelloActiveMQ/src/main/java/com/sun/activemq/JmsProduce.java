@@ -4,12 +4,12 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-public class ActiveQueue {
+public class JmsProduce {
 
     //  linux 上部署的activemq 的 IP 地址 + activemq 的端口号
-    public static final String ACTIVEMQ_URL = "tcp://localhost:61617";
+    public static final String ACTIVEMQ_URL = "nio://localhost:61618";
     // 目的地的名称
-    public static final String QUEUE_NAME = "jdbc01";
+    public static final String QUEUE_NAME = "Transport";
 
 
     public static void main(String[] args) throws Exception {

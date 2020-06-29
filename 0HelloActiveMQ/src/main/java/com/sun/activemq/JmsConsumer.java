@@ -7,9 +7,9 @@ import javax.jms.*;
 public class JmsConsumer {
 
         //  linux 上部署的activemq 的 IP 地址 + activemq 的端口号
-        public static final String ACTIVEMQ_URL = "tcp://localhost:61617";
+        public static final String ACTIVEMQ_URL = "nio://localhost:61618";
         // 目的地的名称
-        public static final String QUEUE_NAME = "jdbc01";
+        public static final String QUEUE_NAME = "Transport";
 
         public static void main(String[] args) throws Exception {
             // 1 按照给定的url创建连接工厂，这个构造器采用默认的用户名密码。该类的其他构造方法可以指定用户名和密码。
